@@ -3,7 +3,7 @@ from streamlit_option_menu import option_menu
 #import home
 import account
 import trending
-#import your_posts
+import your_posts
 #import about
 
 # Set the page config
@@ -46,7 +46,8 @@ class MultiApp:
             account.app()
         elif selected_app == "Trending":
             trending.app()
-       # elif selected_app == "Your Posts":your_posts.app()
+        elif selected_app == "Your Posts":
+            your_posts.app()
         # elif selected_app == "About":about.app()
 
 # Run the app
