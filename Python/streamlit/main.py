@@ -1,12 +1,18 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
+import home
+import account
+import trending
+import your_posts
+import about
 
-import about, account, home, trending, your_posts
-
+# Set the page config
 st.set_page_config(
-    page_title='Pondering',
+    page_title='Pondering App',
+    page_icon=':guardsman:',  # Custom icon or emoji
 )
 
+# Class to manage multiple pages
 class MultiApp:
     def __init__(self):
         self.apps = []
@@ -17,33 +23,35 @@ class MultiApp:
             'function': function
         })
     
-    def run(self):  # Add self as the first argument
+    def run(self):
+        # Sidebar navigation menu
         with st.sidebar:
-            app = option_menu(
-                menu_title='Pondering',
-                options=['Home', 'Account', 'Trending', 'Your Posts', 'About'],
-                icons=['house-fill', 'person-circle', 'trophy-fill', 'chat-fill', 'info-circle-fill'],
-                menu_icon='chat-text-fill',
-                default_index=1,
+            selected_app = option_menu(
+                menu_title="Main Menu",
+                options=["Home", "Account", "Trending", "Your Posts", "About"],
+                icons=["house", "person", "trending_up", "forum", "info_circle"],
+                menu_icon="cast",  # Optional icon for the sidebar menu
+                default_index=0,
                 styles={
-                    'container': {'padding': '5!important', 'background-color': 'black'},
-                    'icon': {'color': 'white', 'font-size': '23px'},
-                    'nav-link': {'color': 'white', 'font-size': '20px', 'text-align': 'left', 'margin': '0px', '--hover-color': 'blue'},
-                    'nav-link-selected': {'background-color': '#02ab21'},
+                    "container": {"padding": "5!important", "background-color": "#fafafa"},
+                    "icon": {"color": "blue", "font-size": "20px"},
+                    "nav-link": {"color": "black", "font-size": "18px", "text-align": "left", "margin": "0px", "--hover-color": "lightblue"},
+                    "nav-link-selected": {"background-color": "#00bfae"},
                 }
-            )    
+            )
         
-        if app == 'Home':
+        # Based on the selected page, call the respective function
+        if selected_app == "Home":
             home.app()
-        elif app == 'Account':
+        elif selected_app == "Account":
             account.app()
-        elif app == 'Trending':
+        elif selected_app == "Trending":
             trending.app()
-        elif app == 'Your Posts':
+        elif selected_app == "Your Posts":
             your_posts.app()
-        elif app == 'About':
+        elif selected_app == "About":
             about.app()
 
-# Create an instance of MultiApp and run it
+# Run the app
 app = MultiApp()
 app.run()
