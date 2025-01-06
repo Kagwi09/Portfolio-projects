@@ -1,11 +1,7 @@
-# %%
-import pandas as pd
 
-# %%
+import pandas as pd
 df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/dashboard-v3/master/data/us-population-2010-2019.csv')
 
-# %%
-# create a dictionary that maps the state name to it's abbreviation 
 states_abbreviation = {
     "Alabama": "AL",
     "Alaska": "AK",
@@ -65,79 +61,30 @@ states_abbreviation = {
     "United States Minor Outlying Islands": "UM",
     "U.S. Virgin Islands": "VI",
 }
-
-# %%
-# create a new column for the abbreviations and fill it with the values in the dictionary above using a for loop 
 df['states_code'] = [states_abbreviation[x] for x in df.states]
-df
 
-# %%
-df.columns
 
-# %%
-# rearrabge the column using the reindex method
 new_columns = ['states', 'states_code', 'id', '2010', '2011', '2012', '2013', '2014', '2015', '2016',
        '2017', '2018', '2019']
 df = df.reindex(columns=new_columns)
-df
 
-# %%
-# Save data to CSV
 path = r"C:\Users\MWANGI\Desktop\us-population-2010-2019-states-code.csv"
 df.to_csv(path, index=False)
 
-# %% [markdown]
-# ## Data pre-processing
-
-# %% [markdown]
-# * pd.melt(): This is the key function that reshapes the DataFrame. It's used to convert a wide-format DataFrame into a long format.
-#     * In a wide format, each column represents a distinct variable, often leading to columns like 'population_2010', 'population_2011', etc. 
-#     *  The melt function converts these year-based columns into a single column of 'year' and their corresponding values (in this case, 'population') into another column.
-#     * id_vars=['states', 'states_code', 'id']: These are the columns that you want to keep unchanged (also called "identifier variables"). The columns states, states_code, and id will remain in the reshaped DataFrame.
-#     * var_name='year': This specifies that the names of the columns that were melted (in this case, year-based population data columns) should be named 'year'.
-#     * value_name='population': This specifies the name of the new column that will contain the values from the melted columns (in this case, the population values).
-# * astype(str): This converts the states column to the string type. 
-# * str.replace(',', ''): This method removes any commas in the population column. Population data often includes commas as thousand separators (e.g., '1,000,000'). Before converting this column to integers, you need to strip out those commas so that the values can be correctly converted.
-# 
-
-# %%
 df_reshaped = pd.melt(df, id_vars=['states', 'states_code', 'id'], var_name='year', value_name='population')
 
-# Convert 'year' column values to integers
 df_reshaped['states'] = df_reshaped['states'].astype(str)
 df_reshaped['year'] = df_reshaped['year'].astype(int)
 df_reshaped['population'] = df_reshaped['population'].str.replace(',', '').astype(int)
 
-df_reshaped
-
-# %%
-# Save reshaped data to CSV
 path2 = r"C:\Users\MWANGI\Desktop\us-population-2010-2019-reshaped.csv"
 df_reshaped.to_csv(path2)
 
-# %%
-# Subset dataframe by year
 selected_year = 2019
 df_selected_year = df_reshaped[df_reshaped.year == selected_year]
-df_selected_year
 
-# %%
-# Sort by year(descending)
 df_selected_year_sorted = df_selected_year.sort_values(by="population", ascending=False)
-df_selected_year_sorted
 
-# %% [markdown]
-# #### CALCULATE POPULATION DIFFERENCE
-# * reset_index() is used to reset the index of the resulting DataFrame (so the index is no longer the original index from input_df).
-# * The population_difference is calculated by subtracting the population of the previous year from the population of the selected year. This is done using sub(), which is a pandas method for subtraction.
-#     * The difference can be negative, positive or 0
-#     * fill_value=0 ensures that if there's no corresponding data for the previous year (for a given state), the difference is treated as the population of the selected year (i.e., the previous year is assumed to have a population of 0).
-# * abs() -  This function calculates the absolute value of the population difference and stores it in a new column population_difference_absolute. This allows you to see the magnitude of the change without regard to whether the population increased or decreased.
-#     * The abs() function is a built-in Python function that computes the absolute value of a number. The absolute value of a number is its magnitude without regard to whether it is positive or negative.
-# * The pd.concat() function combines several columns into a new DataFrame:
-
-# %%
-# Calculate population difference between selected and previous year
 def calculate_population_difference(input_df, input_year):
   selected_year_data = input_df[input_df['year'] == input_year].reset_index()
   previous_year_data = input_df[input_df['year'] == input_year - 1].reset_index()
@@ -146,45 +93,9 @@ def calculate_population_difference(input_df, input_year):
   return pd.concat([selected_year_data.states, selected_year_data.id, selected_year_data.population, selected_year_data.population_difference, selected_year_data.population_difference_absolute], axis=1).sort_values(by="population_difference", ascending=False)
 
 df_population_difference_sorted = calculate_population_difference(df_reshaped, selected_year)
-df_population_difference_sorted
 
-# %%
-# Filter states with population difference > 50000
 df_greater_50000 = df_population_difference_sorted[df_population_difference_sorted.population_difference_absolute > 50000]
-df_greater_50000
 
-# %%
-# % of States with population difference > 50000
-int((len(df_greater_50000)/df_population_difference_sorted.states.nunique())*100)
-
-# %% [markdown]
-# ### Plots
-# * install altair using pip install altair jupyter notebook pandas vega-datasets
-# 
-
-# %% [markdown]
-# #### Heatmap
-
-# %% [markdown]
-# * year:O: The year column is mapped to the y-axis as an ordinal (categorical) field.
-# * the axis property customizes the y-axis:
-#     * title: Sets the axis title to "Year".
-#     * titleFontSize, titlePadding, titleFontWeight: Customizes the axis title font size, padding, and weight.
-#     * labelAngle: Sets the labels' angle to 0 (horizontal orientation).
-# 
-# * color=alt.Color('max(population):Q', ...):
-#     * Maps the maximum population value to the color of each rectangle.
-#     * scale=alt.Scale(scheme="blueorange"): Uses a blue-orange diverging color scheme to represent population values.
-#     * legend=alt.Legend(title=" "): Creates a legend for the color, but with an empty title.
-# 
-# * stroke and strokeWidth:
-#     * Adds a thin black border (stroke) of width 0.25 to each rectangle for better visibility.
-# 
-# * .properties(width=900) - Sets the width of the chart to 900 pixels.
-# 
-# * The final line(heatmap) Outputs the heatmap visualization in the notebook or interactive environment.
-
-# %%
 import altair as alt
 
 alt.themes.enable("dark")
@@ -234,12 +145,6 @@ alt.Chart(states).mark_geoshape().encode(
     type='albersUsa'
 )
 
-
-# %%
-states
-
-# %%
-# Import libraries
 import altair as alt
 from vega_datasets import data
 
@@ -280,59 +185,11 @@ choropleth.update_layout(
 
 choropleth
 
-# %% [markdown]
-# 1. Importing Libraries
-# streamlit: The main library for creating the dashboard.
-# pandas: Handles data loading and manipulation.
-# altair: For creating visualizations like heatmaps and donut charts.
-# plotly.express: For creating the choropleth map.
-# 2. Page Configuration
-# The st.set_page_config function customizes the dashboard:
-# 
-# 
-# 
-# 
-# 
-# 4. Data Loading
-# The population data is loaded from a CSV file (us-population-2010-2019-reshaped.csv) into a Pandas DataFrame df_reshaped.
-# 5. Sidebar
-# 
-# 6. Visualization Functions
-# 
-# 7. Dashboard Layout
-# 
-# 8. Interactive Features
-# Dynamic Filtering: The sidebar filters the data based on user input (year and color theme).
-# Real-Time Metrics: Updates population metrics and visualizations instantly.
-# Responsive Design: Uses Streamlit's layout system to adjust content dynamically.
-# 9. Data Source
-# The data originates from the U.S. Census Bureau, specifically focused on state population totals for the 2010s.
-# Conclusion
-# This Streamlit application combines intuitive visualizations with interactivity, allowing users to explore U.S. population trends effectively. The integration of Altair, Plotly, and Pandas ensures a rich user experience.
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-
-# %%
-#######################
-# Import libraries
 import streamlit as st
 import pandas as pd
 import altair as alt
 import plotly.express as px
 
-
-# %%
-
-#######################
-# Page configuration
 st.set_page_config(
     page_title="US Population Dashboard", # page_title: Sets the browser tab title to "US Population Dashboard."
     page_icon="🏂", # page_icon: Displays a snowboard emoji as the page icon.
@@ -343,35 +200,6 @@ st.set_page_config(
 
 alt.themes.enable("dark") # alt.themes.enable("dark"): Activates the dark theme for Altair visualizations.
 
-#######################
-# CSS styling
-# Custom CSS modifies Streamlit's default UI elements for a more personalized appearance:
-
-
-# CSS targets specific components in the Streamlit app by their data-testid attributes
-# rem is a CSS unit of measurement that stands for "root em".
-# It is a relative unit that is based on the font size of the root element (<html> tag) in an HTML document
-
-# [data-testid="block-container"]- Adjusts the padding and margin for the main content container.
-
-# [data-testid="stVerticalBlock"]- Removes padding on the left and right, 
-    # ensuring that vertical block elements take up the full width.
-
-# [data-testid="stMetric"] -Customizes the appearance of metrics (numerical or text summaries often displayed in dashboards).
-    # background-color: Sets the background color to a dark gray (#393939).
-    # text-align: Centers the text horizontally.
-    # padding: Adds vertical spacing (15px above and below).
-    
-# [data-testid="stMetricLabel"] - Centers the label within the metric component.
-    # display: flex; justify-content: center; align-items: center: Uses Flexbox for horizontal and vertical centering.
-    
-# [data-testid="stMetricDeltaIcon-Up"] and [data-testid="stMetricDeltaIcon-Down"])
-    # Styles the delta icons, which indicate increases (up) or decreases (down) in metrics.
-    # position: relative; left: 38%;: Moves the icon slightly to the right of its default position.
-    # transform: translateX(-50%): Centers the icon by adjusting its translation relative to its position.
-
-
-# used to insert HTML and CSS into a Streamlit app.
 st.markdown(
     """
     <style>
@@ -434,10 +262,7 @@ with st.sidebar: # Contains two interactive widgets:
     st.title('🏂 US Population Dashboard')
     
     year_list = list(df_reshaped.year.unique())[::-1]
-    # df_reshaped.year- This extracts the year column from the DataFrame df_reshaped.
-    # The unique() method retrieves all distinct values from the year column
-    # the array is converted into a list
-    # The slicing operation [::-1] reverses the list. Continuing the example:
+    
     
     selected_year = st.selectbox('Select a year', year_list)
     # Year Selection (st.selectbox): Allows users to select a year. The data is filtered based on the selected year.
