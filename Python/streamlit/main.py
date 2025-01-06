@@ -29,7 +29,7 @@ class MultiApp:
             selected_app = option_menu(
                 menu_title="Main Menu",
                 options=["Account","Trending"],
-                icons=["person","trending_up"],
+                icons=["person","trending_up","forum"],
                 menu_icon="cast",  # Optional icon for the sidebar menu
                 default_index=0,
                 styles={
