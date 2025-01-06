@@ -15,7 +15,7 @@ def run(self):
                 menu_title="Project Menu",
                 options=["Introduction", "Project Gallery", "Total Project Costs",
                          "Labor Costs", "Material Costs", "KPI's"],
-                icons=["buildings","image","cash-stack","people","bricks","clipboard-data"]
+                icons=["buildings","image","cash-stack","people","bricks","clipboard-data"],
                 menu_icon="cast",  # Optional icon for the sidebar menu
                 default_index=0,
                 styles={
