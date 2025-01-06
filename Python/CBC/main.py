@@ -3,11 +3,10 @@ from PIL import Image
 from streamlit_option_menu import option_menu
 
 # Load company logo
-path = "jamwi_logo.jpg"  # Use a relative path
-company_logo = Image.open(path)
+image_url = "https://raw.githubusercontent.com/username/repository/branch/path/to/jamwi_logo.jpg"
 
-# Display logo in sidebar
-st.sidebar.image(company_logo, caption="Jamwi Building Contractors", use_column_width=True)
+# Display the image in the sidebar
+st.sidebar.image(image_url, caption="Jamwi Building Contractors", use_column_width=True)
 
 def run():
     # Sidebar navigation menu
