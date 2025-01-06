@@ -54,7 +54,3 @@ class MultiApp:
     # Run the app
 app = MultiApp()
 app.run()
-
-# Run the app
-app = MultiApp()
-app.run()
