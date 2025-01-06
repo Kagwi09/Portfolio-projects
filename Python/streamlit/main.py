@@ -1,10 +1,10 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-#import home
+import home
 import account
 import trending
 import your_posts
-#import about
+import about
 
 # Set the page config
 st.set_page_config(
@@ -28,8 +28,8 @@ class MultiApp:
         with st.sidebar:
             selected_app = option_menu(
                 menu_title="Main Menu",
-                options=["Account","Trending"],
-                icons=["person","trending_up","forum"],
+                options=["Home", "Account", "Trending", "Your Posts", "About"],
+                icons=["house", "person", "trending_up", "forum", "info_circle"],
                 menu_icon="cast",  # Optional icon for the sidebar menu
                 default_index=0,
                 styles={
@@ -41,14 +41,19 @@ class MultiApp:
             )
         
         # Based on the selected page, call the respective function
-        #if selected_app == "Home": home.app()
+        if selected_app == "Home": 
+            home.app()
         if selected_app == "Account":
             account.app()
         elif selected_app == "Trending":
             trending.app()
         elif selected_app == "Your Posts":
             your_posts.app()
-        # elif selected_app == "About":about.app()
+        elif selected_app == "About":
+            about.app()
+    # Run the app
+app = MultiApp()
+app.run()
 
 # Run the app
 app = MultiApp()
