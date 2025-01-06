@@ -1,27 +1,45 @@
-
 import streamlit as st
 from PIL import Image
 from streamlit_option_menu import option_menu
 
-path = r"C:\Users\MWANGI\Desktop\jamwi_logo.jpg"
+# Load company logo
+path = "jamwi_logo.jpg"  # Use a relative path
 company_logo = Image.open(path)
+
+# Display logo in sidebar
 st.sidebar.image(company_logo, caption="Jamwi Building Contractors", use_column_width=True)
 
+def run():
+    # Sidebar navigation menu
+    with st.sidebar:
+        selected_app = option_menu(
+            menu_title="Project Menu",
+            options=["Introduction", "Project Gallery", "Total Project Costs",
+                     "Labor Costs", "Material Costs", "KPI's"],
+            icons=["house", "image", "cash", "people", "bricks", "clipboard-data"],  # Ensure valid Bootstrap icons
+            menu_icon="cast",  # Optional icon for the sidebar menu
+            default_index=0,
+            styles={
+                "container": {"padding": "5!important", "background-color": "#fafafa"},
+                "icon": {"color": "blue", "font-size": "20px"},
+                "nav-link": {"color": "black", "font-size": "18px", "text-align": "left", "margin": "0px", "--hover-color": "lightblue"},
+                "nav-link-selected": {"background-color": "#00bfae"},
+            }
+        )
+    
+    # Display content based on the selected menu item
+    if selected_app == "Introduction":
+        st.write("Welcome to the project dashboard!")
+    elif selected_app == "Project Gallery":
+        st.write("Here is the project gallery.")
+    elif selected_app == "Total Project Costs":
+        st.write("Total project costs overview.")
+    elif selected_app == "Labor Costs":
+        st.write("Details about labor costs.")
+    elif selected_app == "Material Costs":
+        st.write("Breakdown of material costs.")
+    elif selected_app == "KPI's":
+        st.write("Key Performance Indicators for the project.")
 
-def run(self):
-        # Sidebar navigation menu
-        with st.sidebar:
-            selected_app = option_menu(
-                menu_title="Project Menu",
-                options=["Introduction", "Project Gallery", "Total Project Costs",
-                         "Labor Costs", "Material Costs", "KPI's"],
-                icons=["buildings","image","cash-stack","people","bricks","clipboard-data"],
-                menu_icon="cast",  # Optional icon for the sidebar menu
-                default_index=0,
-                styles={
-                    "container": {"padding": "5!important", "background-color": "#fafafa"},
-                    "icon": {"color": "blue", "font-size": "20px"},
-                    "nav-link": {"color": "black", "font-size": "18px", "text-align": "left", "margin": "0px", "--hover-color": "lightblue"},
-                    "nav-link-selected": {"background-color": "#00bfae"},
-                }
-            )
+# Run the app
+run()
