@@ -1,10 +1,10 @@
 import streamlit as st
 from PIL import Image
 from streamlit_option_menu import option_menu
+from project_gallery import run_project_gallery
 
-# Load company logo
 # Corrected image URL (direct raw link from GitHub)
-image_url = "https://raw.githubusercontent.com/Kagwi09/Portfolio-projects/main/Python/CBC/jamwi_logo.jpg"
+image_url = "https://raw.githubusercontent.com/username/repo/branch/path/to/jamwi_logo.jpg"
 
 # Display the image in the sidebar
 st.sidebar.image(image_url, caption="Jamwi Building Contractors", use_container_width=True)
@@ -16,8 +16,8 @@ def run():
             menu_title="Project Menu",
             options=["Introduction", "Project Gallery", "Total Project Costs",
                      "Labor Costs", "Material Costs", "KPI's"],
-            icons=["house", "image", "cash", "people", "bricks", "clipboard-data"],  # Ensure valid Bootstrap icons
-            menu_icon="cast",  # Optional icon for the sidebar menu
+            icons=["house", "image", "cash", "people", "bricks", "clipboard-data"],
+            menu_icon="cast",
             default_index=0,
             styles={
                 "container": {"padding": "5!important", "background-color": "#fafafa"},
@@ -26,12 +26,12 @@ def run():
                 "nav-link-selected": {"background-color": "#00bfae"},
             }
         )
-    
+
     # Display content based on the selected menu item
     if selected_app == "Introduction":
         st.write("Welcome to the project dashboard!")
     elif selected_app == "Project Gallery":
-        st.write("Here is the project gallery.")
+        run_project_gallery()
     elif selected_app == "Total Project Costs":
         st.write("Total project costs overview.")
     elif selected_app == "Labor Costs":
@@ -42,4 +42,5 @@ def run():
         st.write("Key Performance Indicators for the project.")
 
 # Run the app
-run()
+if __name__ == "__main__":
+    run()
