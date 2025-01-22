@@ -7,7 +7,7 @@ from streamlit_option_menu import option_menu
 image_url = "https://raw.githubusercontent.com/Kagwi09/Portfolio-projects/main/Python/CBC/jamwi_logo.jpg"
 
 # Display the image in the sidebar
-st.sidebar.image(image_url, caption="Jamwi Building Contractors", use_column_width=True)
+st.sidebar.image(image_url, caption="Jamwi Building Contractors", use_container_width=True)
 
 def run():
     # Sidebar navigation menu
