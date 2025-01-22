@@ -33,19 +33,19 @@ def run_project_gallery():
             st.image(
                 "https://via.placeholder.com/300x200",  # Replace with your image URL later
                 caption="Section 1 Placeholder",
-                use_column_width=True
+                use_container_width=True
             )
 
         with col2:
             st.image(
                 "https://via.placeholder.com/300x200",  # Replace with your image URL later
                 caption="Section 2 Placeholder",
-                use_column_width=True
+                use_container_width=True
             )
 
         with col3:
             st.image(
                 "https://via.placeholder.com/300x200",  # Replace with your image URL later
                 caption="Section 3 Placeholder",
-                use_column_width=True
+                use_container_width=True
             )
