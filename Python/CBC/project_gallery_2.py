@@ -5,7 +5,7 @@ def run_project_gallery():
     # Nested navigation within the Project Gallery
     selected_page = option_menu(
         menu_title="Project Gallery",
-        options=["Overview", "Site Clearance and Excavation"],
+        options=["Site Clearance and Excavation","Substructure","Superstructure","Finishes"],
         icons=["info-circle", None],  # Remove icon for "Site Clearance and Excavation"
         menu_icon="images",
         default_index=0,
@@ -19,11 +19,91 @@ def run_project_gallery():
     )
 
     # Display content based on the selected nested page
-    if selected_page == "Overview":
-        st.subheader("Project Gallery Overview")
-        st.write("This section provides an overview of all ongoing and completed projects.")
+    if selected_page == "Substructure":
+        st.subheader("Substructure")
+
+        # Create three columns for the page content
+        col1, col2, col3 = st.columns(3)
+
+        # Add placeholders for images in each column with corrected URLs
+        with col1:
+            st.image(
+                "https://raw.githubusercontent.com/Kagwi09/Portfolio-projects/main/Python/CBC/clearance.jpg",  # Raw image URL
+                caption="Section 1 Placeholder",
+                use_container_width=True
+            )
+
+        with col2:
+            st.image(
+                "https://raw.githubusercontent.com/Kagwi09/Portfolio-projects/main/Python/CBC/exc1.jpg",  # Raw image URL
+                caption="Section 2 Placeholder",
+                use_container_width=True
+            )
+
+        with col3:
+            st.image(
+                "https://raw.githubusercontent.com/Kagwi09/Portfolio-projects/main/Python/CBC/exc2.jpg",  # Raw image URL
+                caption="Section 3 Placeholder",
+                use_container_width=True
+            )
+
+
     elif selected_page == "Site Clearance and Excavation":
         st.subheader("Site Clearance and Excavation")
+
+        # Create three columns for the page content
+        col1, col2, col3 = st.columns(3)
+
+        # Add placeholders for images in each column with corrected URLs
+        with col1:
+            st.image(
+                "https://raw.githubusercontent.com/Kagwi09/Portfolio-projects/main/Python/CBC/clearance.jpg",  # Raw image URL
+                caption="Section 1 Placeholder",
+                use_container_width=True
+            )
+
+        with col2:
+            st.image(
+                "https://raw.githubusercontent.com/Kagwi09/Portfolio-projects/main/Python/CBC/exc1.jpg",  # Raw image URL
+                caption="Section 2 Placeholder",
+                use_container_width=True
+            )
+
+        with col3:
+            st.image(
+                "https://raw.githubusercontent.com/Kagwi09/Portfolio-projects/main/Python/CBC/exc2.jpg",  # Raw image URL
+                caption="Section 3 Placeholder",
+                use_container_width=True
+            )
+     elif selected_page == "Superstructure":
+        st.subheader("Superstructure")
+
+        # Create three columns for the page content
+        col1, col2, col3 = st.columns(3)
+
+        # Add placeholders for images in each column with corrected URLs
+        with col1:
+            st.image(
+                "https://raw.githubusercontent.com/Kagwi09/Portfolio-projects/main/Python/CBC/clearance.jpg",  # Raw image URL
+                caption="Section 1 Placeholder",
+                use_container_width=True
+            )
+
+        with col2:
+            st.image(
+                "https://raw.githubusercontent.com/Kagwi09/Portfolio-projects/main/Python/CBC/exc1.jpg",  # Raw image URL
+                caption="Section 2 Placeholder",
+                use_container_width=True
+            )
+
+        with col3:
+            st.image(
+                "https://raw.githubusercontent.com/Kagwi09/Portfolio-projects/main/Python/CBC/exc2.jpg",  # Raw image URL
+                caption="Section 3 Placeholder",
+                use_container_width=True
+            )
+    elif selected_page == "Superstructure":
+    st.subheader("Superstructure")
 
         # Create three columns for the page content
         col1, col2, col3 = st.columns(3)
