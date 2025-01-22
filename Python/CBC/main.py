@@ -1,10 +1,9 @@
 import streamlit as st
 from PIL import Image
 from streamlit_option_menu import option_menu
-from project_gallery import run_project_gallery
 
-# Corrected image URL (direct raw link from GitHub)
-image_url = "https://raw.githubusercontent.com/Kagwi09/Portfolio-projects/main/Python/CBC/jamwi_logo.jpg"
+# Load company logo
+image_url = "https://github.com/Kagwi09/Portfolio-projects/blob/main/Python/CBC/jamwi_logo.jpg"
 
 # Display the image in the sidebar
 st.sidebar.image(image_url, caption="Jamwi Building Contractors", use_column_width=True)
@@ -31,7 +30,7 @@ def run():
     if selected_app == "Introduction":
         st.write("Welcome to the project dashboard!")
     elif selected_app == "Project Gallery":
-        run_project_gallery()
+        st.write("Here is the project gallery.")
     elif selected_app == "Total Project Costs":
         st.write("Total project costs overview.")
     elif selected_app == "Labor Costs":
@@ -42,5 +41,4 @@ def run():
         st.write("Key Performance Indicators for the project.")
 
 # Run the app
-if __name__ == "__main__":
-    run()
+run()
