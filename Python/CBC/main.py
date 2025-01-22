@@ -3,7 +3,8 @@ from PIL import Image
 from streamlit_option_menu import option_menu
 
 # Load company logo
-image_url = "https://github.com/Kagwi09/Portfolio-projects/blob/main/Python/CBC/jamwi_logo.jpg"
+# Corrected image URL (direct raw link from GitHub)
+image_url = "https://raw.githubusercontent.com/Kagwi09/Portfolio-projects/main/Python/CBC/jamwi_logo.jpg"
 
 # Display the image in the sidebar
 st.sidebar.image(image_url, caption="Jamwi Building Contractors", use_column_width=True)
