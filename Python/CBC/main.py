@@ -1,7 +1,7 @@
 import streamlit as st
 from PIL import Image
 from streamlit_option_menu import option_menu
-from project_gallery_2.py import run_project_gallery
+from project_gallery_2 import run_project_gallery
 
 # Corrected image URL (direct raw link from GitHub)
 image_url = "https://raw.githubusercontent.com/username/repo/branch/path/to/jamwi_logo.jpg"
