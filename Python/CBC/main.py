@@ -1,6 +1,7 @@
 import streamlit as st
 from PIL import Image
 from streamlit_option_menu import option_menu
+from project_gallery import run_project_gallery
 
 # Corrected image URL (direct raw link from GitHub)
 image_url = "https://raw.githubusercontent.com/Kagwi09/Portfolio-projects/main/Python/CBC/jamwi_logo.jpg"
@@ -27,18 +28,17 @@ def run():
         )
     
     # Display content based on the selected menu item
-    if selected_app == "Introduction":
-        st.write("Welcome to the project dashboard!")
-    elif selected_app == "Project Gallery":
-        st.write("Here is the project gallery.")
-    elif selected_app == "Total Project Costs":
-        st.write("Total project costs overview.")
-    elif selected_app == "Labor Costs":
-        st.write("Details about labor costs.")
-    elif selected_app == "Material Costs":
-        st.write("Breakdown of material costs.")
-    elif selected_app == "KPI's":
-        st.write("Key Performance Indicators for the project.")
-
+if selected_app == "Introduction":
+    st.write("Welcome to the project dashboard!")
+elif selected_app == "Project Gallery":
+    run_project_gallery()
+elif selected_app == "Total Project Costs":
+    st.write("Total project costs overview.")
+elif selected_app == "Labor Costs":
+    st.write("Details about labor costs.")
+elif selected_app == "Material Costs":
+    st.write("Breakdown of material costs.")
+elif selected_app == "KPI's":
+    st.write("Key Performance Indicators for the project.")
 # Run the app
 run()
