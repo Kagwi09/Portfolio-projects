@@ -1,7 +1,8 @@
 import streamlit as st
 from PIL import Image
 from streamlit_option_menu import option_menu
-from project_gallery import run_project_gallery
+from CBC.project_gallery import run_project_gallery
+
 
 # Corrected image URL (direct raw link from GitHub)
 image_url = "https://raw.githubusercontent.com/Kagwi09/Portfolio-projects/main/Python/CBC/jamwi_logo.jpg"
