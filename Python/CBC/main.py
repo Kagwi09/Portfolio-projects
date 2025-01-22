@@ -28,17 +28,19 @@ def run():
         )
     
     # Display content based on the selected menu item
-if selected_app == "Introduction":
-    st.write("Welcome to the project dashboard!")
-elif selected_app == "Project Gallery":
-    run_project_gallery()
-elif selected_app == "Total Project Costs":
-    st.write("Total project costs overview.")
-elif selected_app == "Labor Costs":
-    st.write("Details about labor costs.")
-elif selected_app == "Material Costs":
-    st.write("Breakdown of material costs.")
-elif selected_app == "KPI's":
-    st.write("Key Performance Indicators for the project.")
+    if selected_app == "Introduction":
+        st.write("Welcome to the project dashboard!")
+    elif selected_app == "Project Gallery":
+        run_project_gallery()
+    elif selected_app == "Total Project Costs":
+        st.write("Total project costs overview.")
+    elif selected_app == "Labor Costs":
+        st.write("Details about labor costs.")
+    elif selected_app == "Material Costs":
+        st.write("Breakdown of material costs.")
+    elif selected_app == "KPI's":
+        st.write("Key Performance Indicators for the project.")
+
 # Run the app
-run()
+if __name__ == "__main__":
+    run()
