@@ -28,24 +28,24 @@ def run_project_gallery():
         # Create three columns for the page content
         col1, col2, col3 = st.columns(3)
 
-        # Add placeholders for images in each column
+        # Add placeholders for images in each column with corrected URLs
         with col1:
             st.image(
-                "https://via.placeholder.com/300x200",  # Replace with your image URL later
+                "https://raw.githubusercontent.com/Kagwi09/Portfolio-projects/main/Python/CBC/clearance.jpg",  # Raw image URL
                 caption="Section 1 Placeholder",
                 use_container_width=True
             )
 
         with col2:
             st.image(
-                "https://via.placeholder.com/300x200",  # Replace with your image URL later
+                "https://raw.githubusercontent.com/Kagwi09/Portfolio-projects/main/Python/CBC/exc1.jpg",  # Raw image URL
                 caption="Section 2 Placeholder",
                 use_container_width=True
             )
 
         with col3:
             st.image(
-                "https://via.placeholder.com/300x200",  # Replace with your image URL later
+                "https://raw.githubusercontent.com/Kagwi09/Portfolio-projects/main/Python/CBC/exc2.jpg",  # Raw image URL
                 caption="Section 3 Placeholder",
                 use_container_width=True
             )
