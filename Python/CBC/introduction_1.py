@@ -13,43 +13,36 @@ def run_introduction():
                 border-radius: 10px;
                 background-color: #f9f9f9;
                 margin-bottom: 15px;
-                height: 100px; /* Adjust height as needed */
+                height: 100px;
+                text-align: center;
             }
             .segment-title {
-                font-size: 18px;
+                font-size: 16px;
                 font-weight: bold;
                 color: #333;
+                margin-bottom: 5px;
             }
         </style>
         """,
         unsafe_allow_html=True
     )
 
-    # Loop to create 4 rows with 2 segments each (8 segments total)
     placeholder_number = 1
-    for _ in range(4):
-        col1, col2 = st.columns(2)
+    for _ in range(3):  # 3 rows
+        col1, col2, col3, col4 = st.columns(4)
 
-        with col1:
-            st.markdown(
-                f"""
-                <div class="segment-box">
-                    <div class="segment-title">Placeholder {placeholder_number}</div>
-                    <p>This is the content for Placeholder {placeholder_number}.</p>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-            placeholder_number += 1
+        for col in [col1, col2, col3, col4]:
+            with col:
+                # Placeholder Title ABOVE the segment box
+                st.markdown(f'<div class="segment-title">Placeholder {placeholder_number}</div>', unsafe_allow_html=True)
 
-        with col2:
-            st.markdown(
-                f"""
-                <div class="segment-box">
-                    <div class="segment-title">Placeholder {placeholder_number}</div>
-                    <p>This is the content for Placeholder {placeholder_number}.</p>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-            placeholder_number += 1
+                # Segment Box
+                st.markdown(
+                    f"""
+                    <div class="segment-box">
+                        <!-- Segment Content Here -->
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
+                placeholder_number += 1
