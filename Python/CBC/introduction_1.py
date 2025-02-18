@@ -1,5 +1,3 @@
-import streamlit as st
-
 def run_introduction():
     st.title("Introduction")
 
@@ -7,25 +5,15 @@ def run_introduction():
     st.markdown(
         """
         <style>
-            .full-screen-container {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);  /* 4 equal columns */
-                grid-template-rows: 1fr 1fr 0.5fr;     /* 2 equal rows at the top, 1 half-sized row at the bottom */
-                gap: 10px;  /* Space between containers */
-                height: 100vh; /* Full page height */
-                width: 100%;   /* Full page width */
-                padding: 10px;
-            }
-
             .segment-box {
                 border: 2px solid #00bfae;
                 padding: 15px;
                 border-radius: 10px;
                 background-color: #f9f9f9;
+                margin-bottom: 15px;
+                height: 100px;
                 text-align: center;
-                height: 100%;
             }
-
             .segment-title {
                 font-size: 16px;
                 font-weight: bold;
@@ -36,9 +24,6 @@ def run_introduction():
         """,
         unsafe_allow_html=True
     )
-
-    # Full-Screen Container that takes up the entire screen
-    st.markdown('<div class="full-screen-container">', unsafe_allow_html=True)
 
     placeholder_number = 1
     for _ in range(3):  # 3 rows
@@ -57,4 +42,5 @@ def run_introduction():
                     </div>
                     """,
                     unsafe_allow_html=True
-                
+                )
+                placeholder_number += 1 
