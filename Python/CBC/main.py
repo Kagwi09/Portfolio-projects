@@ -2,6 +2,7 @@ import streamlit as st
 from PIL import Image
 from streamlit_option_menu import option_menu
 from project_gallery_2 import run_project_gallery
+from introduction_1 import run_introduction  # <- ADD THIS
 
 # Corrected image URL (direct raw link from GitHub)
 image_url = "https://raw.githubusercontent.com/username/repo/branch/path/to/jamwi_logo.jpg"
@@ -29,7 +30,7 @@ def run():
 
     # Display content based on the selected menu item
     if selected_app == "Introduction":
-        st.write("Welcome to the project dashboard!")
+        run_introduction()  # <- CALL THIS FUNCTION
     elif selected_app == "Project Gallery":
         run_project_gallery()
     elif selected_app == "Total Project Costs":
