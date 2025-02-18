@@ -3,6 +3,8 @@ from PIL import Image
 from streamlit_option_menu import option_menu
 from project_gallery_2 import run_project_gallery
 from introduction_1 import run_introduction  # <- ADD THIS
+st.set_page_config(layout="wide")
+
 
 # Corrected image URL (direct raw link from GitHub)
 image_url = "https://raw.githubusercontent.com/username/repo/branch/path/to/jamwi_logo.jpg"
