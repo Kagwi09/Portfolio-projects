@@ -1,7 +1,6 @@
 import streamlit as st
 
 def run_introduction():
-    st.title("Introduction")
 
     # Custom CSS for segment borders and styling
     st.markdown(
