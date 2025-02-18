@@ -12,8 +12,8 @@ def run_introduction():
             display: grid;
             grid-template-columns: repeat(4, 1fr);  /* 4 equal columns */
             grid-template-rows: 1fr 1fr 0.5fr;  /* 2 equal rows at the top, 1 half-sized row at the bottom */
-            gap: 20px;  /* Space between containers */
-            padding: 20px;
+            gap: 10px;  /* Space between containers */
+            padding: 10px;
         }
 
         /* Style for each segment */
@@ -25,7 +25,9 @@ def run_introduction():
             justify-content: center;
             align-items: center;
             height: 100%;
+            box-sizing: border-box;
         }
+
         </style>
         """,
         unsafe_allow_html=True,
@@ -36,8 +38,7 @@ def run_introduction():
 
     # 12 containers within the full screen container
     for i in range(12):
-        st.markdown(f'<div class="segment">Segment {i+1}</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="segment">Container {i+1}</div>', unsafe_allow_html=True)
 
     # Closing the full-screen container div
     st.markdown('</div>', unsafe_allow_html=True)
-
