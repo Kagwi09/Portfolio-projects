@@ -8,8 +8,8 @@ def run_introduction():
         .full-screen-container {
             height: 100vh;
             width: 100%;
-            padding-top: 10px;  /* Adjust top padding */
-            padding-bottom: 10px;  /* Adjust bottom padding */
+            padding-top: 5px;  /* Adjust top padding */
+            padding-bottom: 5px;  /* Adjust bottom padding */
             border: 3px solid #000; /* Optional: border to highlight the segment */
             display: flex;
             justify-content: center;
