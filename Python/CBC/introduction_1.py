@@ -6,7 +6,7 @@ def run_introduction():
         """
         <style>
             .full-page-segment {
-                width: 150%;
+                width: 100%;
                 height: 100vh;  /* Adjust the height of the segment */
                 border: 3px solid #00bfae;  /* Border color */
                 border-radius: 10px;
