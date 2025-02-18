@@ -1,27 +1,26 @@
 import streamlit as st
 
 def run_introduction():
-    # Custom CSS for styling the segment
+    # Custom CSS for adjusting padding/margin
     st.markdown(
         """
         <style>
-            .segment-container {
-                border: 3px solid #00bfae;
-                padding: 20px;
-                background-color: #f9f9f9;
-                height: 100vh; /* Adjustable - fills most of the page height */
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                box-sizing: border-box;
-            }
+        .full-screen-container {
+            height: 100vh;
+            width: 100%;
+            padding-top: 10px;  /* Adjust top padding */
+            padding-bottom: 10px;  /* Adjust bottom padding */
+            border: 3px solid #000; /* Optional: border to highlight the segment */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         </style>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
-    # Placeholder text above the segment
-    st.markdown("### Placeholder Text Above Segment")
-
-    # Segment that fills most of the available page
-    st.markdown('<div class="segment-container">This is your segment content (Optional)</div>', unsafe_allow_html=True)
+    # Your segment content
+    st.markdown('<div class="full-screen-container">', unsafe_allow_html=True)
+    st.write("Placeholder Text Above the Segment")
+    st.markdown('</div>', unsafe_allow_html=True)
