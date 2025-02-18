@@ -5,6 +5,7 @@ def run_introduction():
     st.markdown(
         """
         <style>
+        /* Full-screen container */
         .full-screen-container {
             height: 100vh;
             width: 100%;
@@ -14,17 +15,19 @@ def run_introduction():
             flex-direction: column;
             justify-content: flex-start;
         }
+        /* Default nested container */
         .nested-container {
             margin: 10px 0;
             padding: 20px;
             border: 2px dashed #4CAF50;
             flex-shrink: 0;
         }
+        /* Larger nested container */
         .nested-container-large {
             margin: 10px 0;
             padding: 30px;
             border: 2px dashed #4CAF50;
-            flex-grow: 1;  /* This takes up more space inside the full-screen container */
+            flex-grow: 1;  /* Takes up more space */
         }
         </style>
         """,
@@ -34,24 +37,25 @@ def run_introduction():
     # Full-Screen Container that takes up the entire screen
     st.markdown('<div class="full-screen-container">', unsafe_allow_html=True)
     
-    # First nested container (Standard size)
+    # Nested Container 1
     st.markdown('<div class="nested-container">', unsafe_allow_html=True)
     st.write("This is the first nested container inside the full-screen container.")
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # Second nested container (Standard size)
+    # Nested Container 2
     st.markdown('<div class="nested-container">', unsafe_allow_html=True)
     st.write("This is the second nested container inside the full-screen container.")
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # Third nested container (Larger size)
+    # Larger Nested Container (takes more space)
     st.markdown('<div class="nested-container-large">', unsafe_allow_html=True)
-    st.write("This is the third nested container, which takes up more space inside the container.")
+    st.write("This is the larger nested container inside the full-screen container, which takes up more space.")
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # Fourth nested container (Standard size)
+    # Nested Container 3
     st.markdown('<div class="nested-container">', unsafe_allow_html=True)
-    st.write("This is the fourth nested container inside the full-screen container.")
+    st.write("This is the third nested container inside the full-screen container.")
     st.markdown('</div>', unsafe_allow_html=True)
 
+    # Closing the full-screen container div
     st.markdown('</div>', unsafe_allow_html=True)
