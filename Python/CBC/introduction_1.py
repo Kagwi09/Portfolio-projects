@@ -1,7 +1,7 @@
 import streamlit as st
 
 def run_introduction():
-    # Custom CSS for the full-screen container and the nested segments
+    # Custom CSS for the full-screen container and the grid layout
     st.markdown(
         """
         <style>
@@ -9,23 +9,22 @@ def run_introduction():
         .full-screen-container {
             height: 100vh;  /* Full screen height */
             width: 100%;    /* Full screen width */
-            border: 3px solid #000;  /* Border around the segment */
-            padding-top: 30px; /* Top padding */
-            padding-right: 20px; /* Right padding */
-            padding-bottom: 30px; /* Bottom padding */
-            padding-left: 20px; /* Left padding */
-            display: flex;
-            flex-direction: column; /* Stack items vertically */
-            justify-content: flex-start; /* Align to top of container */
-            gap: 20px; /* Space between nested segments */
-        }
-        
-        /* Style for the nested containers inside the full-screen container */
-        .nested-container {
-            border: 2px dashed #333;  /* Dashed border for the nested containers */
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);  /* 4 equal columns */
+            grid-template-rows: 1fr 1fr 0.5fr;  /* 2 equal rows at the top, 1 half-sized row at the bottom */
+            gap: 20px;  /* Space between containers */
             padding: 20px;
+        }
+
+        /* Style for each segment */
+        .segment {
+            border: 2px solid #333;  /* Solid border for each segment */
             text-align: center;
-            width: 100%; /* Ensure the nested containers fill the container width */
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
         }
         </style>
         """,
@@ -35,15 +34,10 @@ def run_introduction():
     # Full-Screen Container that takes up the entire screen
     st.markdown('<div class="full-screen-container">', unsafe_allow_html=True)
 
-    # First Nested Container inside the full-screen container
-    st.markdown('<div class="nested-container">', unsafe_allow_html=True)
-    st.write("This is the first nested container inside the full-screen container.")
-    st.markdown('</div>', unsafe_allow_html=True)
-
-    # Second Nested Container inside the full-screen container
-    st.markdown('<div class="nested-container">', unsafe_allow_html=True)
-    st.write("This is the second nested container inside the full-screen container.")
-    st.markdown('</div>', unsafe_allow_html=True)
+    # 12 containers within the full screen container
+    for i in range(12):
+        st.markdown(f'<div class="segment">Segment {i+1}</div>', unsafe_allow_html=True)
 
     # Closing the full-screen container div
     st.markdown('</div>', unsafe_allow_html=True)
+
