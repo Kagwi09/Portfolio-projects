@@ -1,44 +1,16 @@
 import streamlit as st
 
 def run_introduction():
-    # Custom CSS for the full-screen container and the grid layout
-    st.markdown(
-        """
-        <style>
-        /* Full-screen container */
-        .full-screen-container {
-            height: 100vh;  /* Full screen height */
-            width: 100%;    /* Full screen width */
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);  /* 4 equal columns */
-            grid-template-rows: 1fr 1fr 0.5fr;  /* 2 equal rows at the top, 1 half-sized row at the bottom */
-            gap: 10px;  /* Space between containers */
-            padding: 10px;
-        }
+    st.title("Introduction")
 
-        /* Style for each segment */
-        .segment {
-            border: 2px solid #333;  /* Solid border for each segment */
-            text-align: center;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            box-sizing: border-box;
-        }
+    # Create 4 rows with 2 segments each (8 segments in total)
+    for i in range(1, 5):
+        col1, col2 = st.columns(2)
 
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+        with col1:
+            st.subheader(f"Segment {2 * i - 1}")
+            st.write(f"Placeholder text for Segment {2 * i - 1}.")
 
-    # Full-Screen Container that takes up the entire screen
-    st.markdown('<div class="full-screen-container">', unsafe_allow_html=True)
-
-    # 12 containers within the full screen container
-    for i in range(12):
-        st.markdown(f'<div class="segment">Container {i+1}</div>', unsafe_allow_html=True)
-
-    # Closing the full-screen container div
-    st.markdown('</div>', unsafe_allow_html=True)
+        with col2:
+            st.subheader(f"Segment {2 * i}")
+            st.write(f"Placeholder text for Segment {2 * i}.")
