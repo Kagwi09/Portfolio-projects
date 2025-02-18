@@ -9,7 +9,7 @@ def run_introduction():
                 border: 3px solid #00bfae;
                 padding: 20px;
                 background-color: #f9f9f9;
-                height: 80vh; /* Adjustable - fills most of the page height */
+                height: 100vh; /* Adjustable - fills most of the page height */
                 display: flex;
                 justify-content: center;
                 align-items: center;
