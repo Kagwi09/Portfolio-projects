@@ -1,73 +1,39 @@
 import streamlit as st
 
 def run_introduction():
-    # Custom CSS to ensure columns fill the width
+    # Custom CSS to create a full-width, full-height segment with a border outline
     st.markdown(
         """
         <style>
-            .segment-box-small {
-                border: 2px solid #00bfae;
-                padding: 15px;
+            .full-page-segment {
+                width: 100%;
+                height: 80vh;  /* Adjust the height of the segment */
+                border: 3px solid #00bfae;  /* Border color */
                 border-radius: 10px;
                 background-color: #f9f9f9;
-                margin-bottom: 15px;
-                height: 100px; /* Height for the top row segments */
-                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
             }
-            .segment-box-large {
-                border: 2px solid #00bfae;
-                padding: 15px;
-                border-radius: 10px;
-                background-color: #f9f9f9;
-                margin-bottom: 15px;
-                height: 250px; /* Height for the bottom row segments */
-                text-align: center;
-            }
-            .segment-title {
-                font-size: 16px;
+            .placeholder-text {
+                font-size: 20px;
                 font-weight: bold;
-                color: #333;
-                margin-bottom: 5px;
-            }
-            .stColumns > div {
-                flex: 1;  /* Ensure equal distribution of width for each column */
+                text-align: center;
+                margin-bottom: 10px;  /* Space between text and segment */
             }
         </style>
-        """,
-        unsafe_allow_html=True
+        """, unsafe_allow_html=True
     )
 
-    placeholder_number = 1
+    # Placeholder text above the segment
+    st.markdown('<div class="placeholder-text">This is a placeholder text above the giant segment</div>', unsafe_allow_html=True)
 
-    # First 2 Rows - Smaller Boxes (evenly distributed across the width)
-    for _ in range(2):  # 2 rows
-        col1, col2, col3, col4 = st.columns(4)  # 4 equal columns
-
-        for col in [col1, col2, col3, col4]:
-            with col:
-                st.markdown(f'<div class="segment-title">Placeholder {placeholder_number}</div>', unsafe_allow_html=True)
-                st.markdown(
-                    f"""
-                    <div class="segment-box-small">
-                        <!-- Content Here -->
-                    </div>
-                    """,
-                    unsafe_allow_html=True
-                )
-                placeholder_number += 1
-
-    # Last Row - Larger Boxes (still 4 columns)
-    col1, col2, col3, col4 = st.columns(4)  # 4 equal columns
-
-    for col in [col1, col2, col3, col4]:
-        with col:
-            st.markdown(f'<div class="segment-title">Placeholder {placeholder_number}</div>', unsafe_allow_html=True)
-            st.markdown(
-                f"""
-                <div class="segment-box-large">
-                    <!-- Content Here -->
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-            placeholder_number += 1
+    # The large segment
+    st.markdown(
+        """
+        <div class="full-page-segment">
+            <!-- Content of the giant segment goes here -->
+        </div>
+        """, unsafe_allow_html=True
+    )
