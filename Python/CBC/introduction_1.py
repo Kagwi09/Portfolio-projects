@@ -1,13 +1,20 @@
 import streamlit as st
 
 def run_introduction():
-    # Custom CSS to create a full-width, full-height segment with a border outline
+    # Custom CSS to remove margin/padding and ensure the segment fills the screen
     st.markdown(
         """
         <style>
+            /* Remove default margin and padding from the body and html */
+            body, html {
+                margin: 0;
+                padding: 0;
+                height: 100%;  /* Ensure the body takes up the full height of the screen */
+            }
+            
             .full-page-segment {
                 width: 100%;
-                height: 100vh;  /* Adjust the height of the segment */
+                height: 100vh;  /* Ensure the segment takes up 100% of the viewport height */
                 border: 3px solid #00bfae;  /* Border color */
                 border-radius: 10px;
                 background-color: #f9f9f9;
@@ -15,7 +22,9 @@ def run_introduction():
                 justify-content: center;
                 align-items: center;
                 padding: 20px;
+                box-sizing: border-box;  /* Include padding in the element's total width/height */
             }
+
             .placeholder-text {
                 font-size: 20px;
                 font-weight: bold;
