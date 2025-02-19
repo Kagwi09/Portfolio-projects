@@ -7,7 +7,7 @@ def run_introduction():
         <style>
             .segment-box-small {
                 border: 2px solid #00bfae;
-                padding: 15px;
+                padding: 5px;
                 border-radius: 10px;
                 background-color: #f9f9f9;
                 margin-bottom: 15px;
@@ -16,7 +16,7 @@ def run_introduction():
             }
             .segment-box-large {
                 border: 2px solid #00bfae;
-                padding: 15px;
+                padding: 5px;
                 border-radius: 10px;
                 background-color: #f9f9f9;
                 margin-bottom: 15px;
