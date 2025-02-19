@@ -8,18 +8,18 @@ def run_introduction():
             .segment-box-small {
                 border: 2px solid #00bfae;
                 padding: 5px;
-                border-radius: 10px;
+                border-radius: 5px;
                 background-color: #f9f9f9;
-                margin-bottom: 15px;
+                margin-bottom: 5px;
                 height: 100px; /* Smaller height for top rows */
                 text-align: center;
             }
             .segment-box-large {
                 border: 2px solid #00bfae;
                 padding: 5px;
-                border-radius: 10px;
+                border-radius: 5px;
                 background-color: #f9f9f9;
-                margin-bottom: 15px;
+                margin-bottom: 5px;
                 height: 250px; /* Larger height for bottom row */
                 text-align: center;
             }
